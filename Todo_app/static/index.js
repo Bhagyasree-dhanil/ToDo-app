@@ -1,0 +1,4 @@
+function balert()
+{
+  alert("wow!")
+}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+
+      <div class="text-center">
+        <h1>Completed Todo!</h1>
+        <p>You Done this.It matters most!</p>
+        <hr>
+      </div>
+    </div>
+</div>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+
+      {% if todo_data %}
+          <div class="list-group">
+            {% for data in todo_data %}
+
+               <a href="#" class="list-group-item list-group-item-action
+               {% if data.important %} list-group-item-danger {% endif %}">
+               <b>{{data.title}}</b>
+               completed
+               {{data.completed_date|date:'M j Y H:i'}}
+              </a>
+            {% endfor %}
+          </div>
+
+      {% else %}
+
+            <div class="text-center">
+              <h2>Look like you didn't have any completed Todos! </h2>
+            </div>
+
+      {% endif %}
+
+       <br><br>
+
+      <div class="text-center">
+        <a role="button" href="#" class="btn btn-primary btn-md">Add New ToDo</a>
+      </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

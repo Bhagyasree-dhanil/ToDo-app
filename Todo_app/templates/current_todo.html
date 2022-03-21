@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+
+      <div class="text-center">
+        <h1>Things to do!</h1>
+        <p>What matters is what you do..</p>
+        <hr>
+      </div>
+
+       {% if todo_data%}
+          <h4>{{todo_data.count}} Current ToDo{{todo_data.count|pluralize}}</h4>
+       {% endif %}
+
+    </div>
+</div>
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-10">
+
+      {% if todo_data %}
+          <div class="list-group">
+            {% for data in todo_data %}
+
+               <a href="{% url 'show_todo' data.id %}" class="list-group-item list-group-item-action
+               {% if data.important %} list-group-item-danger {% endif %}">
+               <b>{{data.title}}</b>
+               {% if data.memo %}
+                 {{data.memo|truncatechars:30}}
+              {% endif %}
+              </a>
+            {% endfor %}
+          </div>
+
+      {% else %}
+
+            <div class="text-center">
+              <h2>Look like you didn't have any Todos! Great work </h2>
+            </div>
+
+      {% endif %}
+
+       <br><br>
+
+      <div class="text-center">
+        <a role="button" href="{% url 'create_todo' %}" class="btn btn-primary btn-md">Add New ToDo</a>
+      </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
